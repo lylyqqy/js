@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    window.onload=function(){
+
+        // document.onkeydown=function(){
+        //     console.log("6");
+        // }
+        // document.onkeyup=function(){
+        //     console.log("8");
+        // }
+        var input=document.getElementsByTagName("input")[0];
+        input.onkeydown=function(event){
+            // console.log(6);
+            // // 在文本框中输入内容属于onkeydown的默认行为，如果在onkeydown中取消了默认行为，则输入的内容不会出现在文本框中
+            // return false;
+        event=event||window.event;
+        if(event.keyCode>=48 && event.keyCode<=57){
+            return false;
+        }
+       
+        }
+    };
+    
+    </script>
+</head>
+<body>
+    <input type="text" name="" id="">
+</body>
+</html>

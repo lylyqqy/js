@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+    var obj={
+        name:"孙悟空",
+        age:10,
+    }
+    obj["jsadca asdd"]=22;
+    // console.log(obj[jsadca asdd]);  会报错
+    console.log(obj["jsadca asdd"]); //✔输出
+
+    for (var n in obj){
+        console.log(obj[n]);
+        // console.log(obj["n"]); 到obj["jsadca asdd"]会报错
+    }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

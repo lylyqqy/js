@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width:100px;
+            height:100px;
+            background-color: aquamarine;
+            position:absolute;
+        }
+    </style>
+    <script>
+    window.onload=function(){
+        var speed=10;
+        var div=document.getElementsByTagName("div")[0];
+        
+        document.onkeydown=function(event,number){
+            // 上 38 右39 下 40 左37
+            if(event.ctrlKey){
+            speed=50;
+        }
+            switch(event.keyCode){
+
+                case 37:
+                div.style.left=div.offsetLeft-speed+"px";
+                break;
+                case 38:
+                div.style.top=div.offsetTop-speed+"px";
+                break;
+                case 39:
+                div.style.left=div.offsetLeft+speed+"px";
+                break;
+                case 40:
+                div.style.top=div.offsetTop+speed+"px";
+                break;
+                    
+            }
+        }
+    }
+
+    </script>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>
