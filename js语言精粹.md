@@ -67,3 +67,62 @@ aeguments数组并非一个真正的数组，所以它并没有concat方法，�
     };
 
 ```
+##### 数组
+js提供了一种拥有一些类数组特性的对象，它的属性的检索和更新的方式与对象一模一样，只不过多一个可以用整数作为属性名的特性
+length属性的值是这个数组的最大整数属性名加1，它不一定等于数组里的属性的个数  
+
+你可以直接设置length的值，设置更大的length不会给数组分配更多的空间
+##### 正则表达式
+用正则表达式字面量创建RegExp对象共享同一个实例
+```
+    function make_a_matcher(){
+        return /a/gi;
+    }
+    var x = make_a_matcher();
+    var y = make_a_matcher();
+    // x和y是相同的对象
+    x.lastIndex = 10;
+    document.write(y.lastIndex);  //10
+```
+一个正则表达式因子可以是一个字符，一个由圆括号包围的组，一个字符类，或者是一个转义序列，除了控制字符和特殊字符以外，所有的字符都会按照字面处理：
+```
+     \ / [ ] ( ) { } ? + * | . ^ $
+```
+如果你希望上面列出的字符按字面去匹配，那么必须要用一个\前缀来进行转义，你如果拿不准的话，可以给任何特殊字符都添加一个\前缀来使其字面化。
+一个未被转义的.会匹配出行结束以外的任何字符
+##### 方法
+- array.push()
+把一个或多个参数添加到数组的尾部，和concat方法不同的是，它会修改array，如果参数是一个数组，它会把参数数组作为单个元素整个添加到数组中，并返回这个array的新长度值
+- array.reverse()
+  修改数组自身
+- array.sort()
+```
+    var n = [4,8,15,16,23,42];
+    n.sort(function (a,b) ){
+        return a-b;
+    });
+    // n是[4，8，15，16，23，42]
+```
+上面这个函数可以使数字正确排序，但它不能使字符串排序，如果我们想要给任何包含简单值得数组排序，可以这样：
+```
+    var m = ["aa","bb","a",4,8,15,16];
+    m.sort(function (a,b){
+        if(a===b){
+            return 0;
+        }
+        if(typeof a === typeof b){
+            return a<b? -1:1;
+        }
+        return typeof a< typeof b? -1:1;
+    });
+    // m:[4,8,15,16,"a","aa","bb"]
+```
+- number.toFixed()
+  将number转换称为一个十进制形式得字符串
+- regexp.exec(string)
+  如果regexp带有一个g标识，查找得不是从这个字符串的其实位置来世，而是从regexp.lastIndex(初始值为0)位置开始，如果匹配成功，那么regexp.lastIndex将被设置为该匹配后第一个字符的位置，不成功的匹配会重置regexp.lastIndex为0.
+  这就允许你通过循环调用exec去查询一个匹配模式在一个字符串中发生了几次，有两件事情需要注意，如果你提前退出了这个循环，再次进入这个循环前必须把regexp.lastIndex重置为0，而且，^因子仅匹配regexp.lastIndex为0的情况。  
+      
+- string.replace(searchValue,replaceValue)
+  repalce方法对string进行查找和替换操作，并返回一个新的字符串，参数searchValue可以使一个字符串或一个正则表达式对象。如果searchValue使一个正则表达式并且带有g标识，它会替换所有的匹配，如果没有带g标识，它仅会替换第一个匹配
+  replaceValue可以使一个字符床或一个函数，如果replaceValue是一个函数，那么每遇到一次匹配函数就会配调用一次，而该函数返回的字符串会被用作替换文本
